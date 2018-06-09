@@ -176,21 +176,6 @@ public class ReturnActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-//
-////
-////        //전체 상품보기에서 해당하는 상품 클릭시 메인으로 돌아와 선택된 상품 바코드 출력
-////        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-////            @Override
-////            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-////                Product item = (Product) adapter.getItem(position);
-//////                item.getBacode();//이게 바코드 받아오는 코드
-////                String a = item.getBacode();
-////                Intent intent = new Intent();
-////                intent.putExtra("position",a);
-////                setResult(RESULT_OK,intent);
-////                finish();
-////            }
-////        });
 
     }
 

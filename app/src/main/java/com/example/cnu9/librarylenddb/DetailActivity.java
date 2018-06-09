@@ -51,6 +51,7 @@ public class DetailActivity extends AppCompatActivity {
         text_bookName.setText(bookName);
         text_author.setText(author);
         text_bookPublisher.setText(bookPublisher);
+        text_lendDate.setText(mUser.child(id).child("LendBookCode").child(bookCode).getKey());
 
         // 대출일 때,
         if(previousActivity == 1){

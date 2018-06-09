@@ -7,9 +7,13 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 public class DetailActivity extends AppCompatActivity {
 
@@ -21,6 +25,7 @@ public class DetailActivity extends AppCompatActivity {
 
     DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference();
     DatabaseReference mUser = mDatabase.child("User");
+    DatabaseReference mBook = mDatabase.child("Book");
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -68,9 +73,24 @@ public class DetailActivity extends AppCompatActivity {
         lendButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-//                mUser.child(id).child("LendBookCode").setValue()
+                long time = System.currentTimeMillis();
+                SimpleDateFormat dayTime = new SimpleDateFormat("yyyy.mm.dd");
+                String strDayTime = dayTime.format(new Date(time));
+
+                mUser.child(id).child("LendBookCode").child(bookCode).setValue(strDayTime);
+                mBook.child(bookCode).child("stock").setValue(false);
+                lendButton.setVisibility(View.INVISIBLE);
+                returnButton.setVisibility(View.VISIBLE);
+                toastMessage("대출하였습니다.");
+                finish();
             }
         });
 
+    }
+
+    // TOAST 메시지 띄우기
+    private void toastMessage(String msg){
+        Toast toast = Toast.makeText(getApplicationContext(), msg, Toast.LENGTH_SHORT);
+        toast.show();
     }
 }

@@ -17,6 +17,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".LendActivity"></activity>
+        <activity android:name=".ReturnActivity"></activity>
     </application>
 
 </manifest>

@@ -1,12 +1,17 @@
 package com.example.cnu9.librarylenddb;
 
 //빌린 목록 조회 페이지
+
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.BaseAdapter;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -19,11 +24,16 @@ import java.util.ArrayList;
 public class ReturnActivity extends AppCompatActivity {
 
     DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference();
-    DatabaseReference mProduct = mDatabase.child("Book");
+    DatabaseReference mBook = mDatabase.child("Book");
+
+    DatabaseReference mUser = mDatabase.child("User");
 
     ListView listView;
     BookAdapter adapter;
     ArrayList<Book> items = new ArrayList<Book>();
+
+    String id;
+
 
     class BookAdapter extends BaseAdapter {
 
@@ -80,30 +90,71 @@ public class ReturnActivity extends AppCompatActivity {
         adapter = new BookAdapter();
 
 
-        mProduct.addValueEventListener(new ValueEventListener() {
 
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                adapter.allRemove(); //리스트 내부를 모두 지웠다가 아래 for문으로 다시 생성
-                for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
-                    String bookCode = snapshot.child("BookCode").getValue(String.class);
-                    String bookName = snapshot.child("BookName").getValue(String.class);
-                    String author = snapshot.child("Author").getValue(String.class);
-                    String bookPublisher = snapshot.child("BookPublisher").getValue(String.class);
-                    adapter.addItem(new Book(bookCode, bookName, author, bookPublisher));
-                    listView.setAdapter(adapter); //리스트 뷰에 어댑터 객체 설정
+
+
+        if(mUser.child(ID).child("LendBookCode") != null){ //ID부분에 MAIN에서 로그인한 아이디 받아와서 넣으면 됨
+
+            mUser.child(ID).child("LendBookCode").addValueEventListener(new ValueEventListener() {
+
+                @Override
+                public void onDataChange(DataSnapshot dataSnapshot) {
+                    for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
+                        String code = snapshot.getKey();
+                        lendBookList(code);
+                    }
                 }
-                listView.setAdapter(adapter);
 
-            }
+                @Override
+                public void onCancelled (DatabaseError databaseError){
 
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
+                }
+            });
 
-            }
-        });
+
+        }
+
+
+//        mBook.addValueEventListener(new ValueEventListener() {
+//
+//            @Override
+//            public void onDataChange(DataSnapshot dataSnapshot) {
+//                adapter.allRemove(); //리스트 내부를 모두 지웠다가 아래 for문으로 다시 생성
+//                for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
+//                    String bookCode = snapshot.child("BookCode").getValue(String.class);
+//                    String bookName = snapshot.child("BookName").getValue(String.class);
+//                    String author = snapshot.child("Author").getValue(String.class);
+//                    String bookPublisher = snapshot.child("BookPublisher").getValue(String.class);
+//                    adapter.addItem(new Book(bookCode, bookName, author, bookPublisher));
+//                    //listView.setAdapter(adapter); //리스트 뷰에 어댑터 객체 설정
+//                }
+//                    listView.setAdapter(adapter);
+//
+//                }
+//
+//                @Override
+//                public void onCancelled (DatabaseError databaseError){
+//
+//                }
+//            });
+
         //저장한 값을 이용하여 어댑터에 각 아이템 추가
 
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Book item = (Book) adapter.getItem(position);
+                String bookName = item.getBookName();
+                String author = item.getAuthor();
+                String bookPublisher = item.getBookPublisher();
+
+                Intent intent = new Intent(ReturnActivity.this, DetailActivity.class);
+                intent.putExtra("BookName",bookName);
+                intent.putExtra("Author",author);
+                intent.putExtra("BookPublisher",bookPublisher);
+                startActivity(intent);
+            }
+        });
 //
 ////
 ////        //전체 상품보기에서 해당하는 상품 클릭시 메인으로 돌아와 선택된 상품 바코드 출력
@@ -120,5 +171,30 @@ public class ReturnActivity extends AppCompatActivity {
 ////            }
 ////        });
 
+    }
+
+    public void lendBookList(String code) {
+        mBook.child(code).addValueEventListener(new ValueEventListener() {
+
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                //adapter.allRemove(); //리스트 내부를 모두 지웠다가 아래 for문으로 다시 생성
+                String bookCode = dataSnapshot.child("BookCode").getValue(String.class);
+                String bookName = dataSnapshot.child("BookName").getValue(String.class);
+                String author = dataSnapshot.child("Author").getValue(String.class);
+                String bookPublisher = dataSnapshot.child("BookPublisher").getValue(String.class);
+                adapter.addItem(new Book(bookCode, bookName, author, bookPublisher));
+                listView.setAdapter(adapter); //리스트 뷰에 어댑터 객체 설정
+
+
+//                listView.setAdapter(adapter);
+
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
     }
 }

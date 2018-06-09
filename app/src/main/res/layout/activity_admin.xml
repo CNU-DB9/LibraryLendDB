@@ -4,26 +4,19 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    tools:context=".AdminActivity">
 
-    <LinearLayout
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:layout_height="match_parent">
 
         <Button
-            android:id="@+id/button_LogIn"
+            android:id="@+id/button_add"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="LOGIN"
+            android:layout_alignParentBottom="true"
+            android:text="ADD"
             android:onClick="onClick"/>
+    </RelativeLayout>
 
-        <Button
-            android:id="@+id/button_SignUp"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="SIGN UP"
-            android:onClick="onClick"/>
-
-    </LinearLayout>
 </android.support.constraint.ConstraintLayout>

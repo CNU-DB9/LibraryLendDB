@@ -22,7 +22,13 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
         <activity android:name=".DetailActivity"></activity>
+        <activity android:name=".SignUpActivity" />
+        <activity android:name=".LogInActivity" />
+        <activity android:name=".AdminActivity" />
+        <activity android:name=".SelectActivity"></activity>
+
     </application>
 
 </manifest>

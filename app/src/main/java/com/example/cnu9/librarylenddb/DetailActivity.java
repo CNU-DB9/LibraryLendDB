@@ -57,7 +57,6 @@ public class DetailActivity extends AppCompatActivity {
             public void onClick(View v) {
                 if(mUser.child(id).child("LendDate") != null){
                     mUser.child(id).child("LendBookCode").child(bookCode).removeValue();
-                    mUser.child(id).child("LendDate").removeValue();
                     returnButton.setVisibility(View.INVISIBLE);
                     finish();
                 }

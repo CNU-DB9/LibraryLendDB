@@ -20,6 +20,7 @@ public class DetailActivity extends AppCompatActivity {
 
 
     DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference();
+    DatabaseReference mBook = mDatabase.child("Book");
     DatabaseReference mUser = mDatabase.child("User");
 
     @Override
@@ -57,6 +58,7 @@ public class DetailActivity extends AppCompatActivity {
             public void onClick(View v) {
                 if(mUser.child(id).child("LendDate") != null){
                     mUser.child(id).child("LendBookCode").child(bookCode).removeValue();
+                    mBook.child(bookCode).child("stock").setValue(true);
                     returnButton.setVisibility(View.INVISIBLE);
                     finish();
                 }

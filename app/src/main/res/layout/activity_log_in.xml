@@ -20,7 +20,7 @@
             android:hint="ID" />
 
         <EditText
-            android:id="@+id/editText_Password"
+            android:id="@+id/editText_PW"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
@@ -28,9 +28,10 @@
             android:hint="Password"/>
 
         <Button
-            android:id="@+id/button_"
+            android:id="@+id/button_LogIn"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="LOGIN" />
+            android:text="LOGIN"
+            android:onClick="onClick"/>
     </LinearLayout>
 </android.support.constraint.ConstraintLayout>

@@ -16,11 +16,27 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
-            android:inputType="textPersonName"
-            android:hint="ID"/>
+            android:hint="ID"
+            android:inputType="textPersonName" />
 
         <EditText
-            android:id="@+id/editText_Password_SignUp"
+            android:id="@+id/editText_Name_SignUp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:inputType="textPersonName"
+            android:hint="Name"/>
+
+        <EditText
+            android:id="@+id/editText_Birthday_SignUp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:inputType="date"
+            android:hint="Birthdate"/>
+
+        <EditText
+            android:id="@+id/editText_PW_SignUp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
@@ -37,14 +53,16 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="SIGN UP" />
+                android:text="SIGN UP"
+                android:onClick="onClick"/>
 
             <Button
                 android:id="@+id/button_Cancel"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="CANCEL" />
+                android:text="CANCEL"
+                android:onClick="onClick"/>
         </LinearLayout>
 
     </LinearLayout>

@@ -3,6 +3,7 @@ package com.example.cnu9.librarylenddb;
 //빌린 목록 조회 페이지
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -27,6 +28,8 @@ public class ReturnActivity extends AppCompatActivity {
     DatabaseReference mBook = mDatabase.child("Book");
 
     DatabaseReference mUser = mDatabase.child("User");
+
+    SharedPreferences pref;
 
     ListView listView;
     BookAdapter adapter;
@@ -84,18 +87,19 @@ public class ReturnActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_return);
 
+        pref = getSharedPreferences("pref", MODE_PRIVATE);
 
         listView = (ListView) findViewById(R.id.productListView);
 
         adapter = new BookAdapter();
 
 
+        id = pref.getString("ID","");
 
 
+        if(mUser.child(id).child("LendBookCode") != null){ //ID부분에 MAIN에서 로그인한 아이디 받아와서 넣으면 됨
 
-        if(mUser.child(ID).child("LendBookCode") != null){ //ID부분에 MAIN에서 로그인한 아이디 받아와서 넣으면 됨
-
-            mUser.child(ID).child("LendBookCode").addValueEventListener(new ValueEventListener() {
+            mUser.child(id).child("LendBookCode").addValueEventListener(new ValueEventListener() {
 
                 @Override
                 public void onDataChange(DataSnapshot dataSnapshot) {

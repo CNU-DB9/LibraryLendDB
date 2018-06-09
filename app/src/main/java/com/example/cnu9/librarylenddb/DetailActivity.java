@@ -1,6 +1,7 @@
 package com.example.cnu9.librarylenddb;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -14,6 +15,8 @@ public class DetailActivity extends AppCompatActivity {
 
     TextView text_bookName, text_author, text_bookPublisher, text_lendDate;
     Button returnButton, lendButton;
+    SharedPreferences pref;
+    String id;
 
     DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference();
     DatabaseReference mUser = mDatabase.child("User");
@@ -22,6 +25,8 @@ public class DetailActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detail);
+
+        pref = getSharedPreferences("pref", MODE_PRIVATE);
 
         Intent intent = getIntent();
         String bookName = intent.getStringExtra("BookName");
@@ -43,11 +48,13 @@ public class DetailActivity extends AppCompatActivity {
 
         //여기에 데이터베이스 접근하여 빌린 일자 받아와야함
 
+        id = pref.getString("ID","");
+
         returnButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(mUser.child(ID).child("LendDate") != null){
-                    mUser.child(ID).child("LendDate").removeValue();
+                if(mUser.child(id).child("LendDate") != null){
+                    mUser.child(id).child("LendDate").removeValue();
                     returnButton.setVisibility(View.INVISIBLE);
                 }
 

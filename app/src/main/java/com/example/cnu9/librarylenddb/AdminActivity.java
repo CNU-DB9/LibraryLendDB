@@ -8,7 +8,7 @@ import android.widget.Toast;
 
 public class AdminActivity extends AppCompatActivity {
 
-    private String ID;
+    private String id;
 
     private SharedPreferences pref;
 

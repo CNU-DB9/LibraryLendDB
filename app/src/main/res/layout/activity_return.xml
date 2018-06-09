@@ -14,7 +14,7 @@
             android:id="@+id/bookCodeInput"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="책 고유 코드를 입력해주세요" />
+            android:hint="책 고유 코드를 입력해주세요(ex. 01)" />
 
         <Button
             android:id="@+id/returnButton"

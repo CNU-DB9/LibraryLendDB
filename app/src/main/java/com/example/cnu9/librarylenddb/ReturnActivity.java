@@ -11,6 +11,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.BaseAdapter;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -30,6 +32,9 @@ public class ReturnActivity extends AppCompatActivity {
     DatabaseReference mUser = mDatabase.child("User");
 
     SharedPreferences pref;
+
+    EditText bookCodeInput;
+    Button returnButton;
 
     ListView listView;
     BookAdapter adapter;
@@ -90,6 +95,8 @@ public class ReturnActivity extends AppCompatActivity {
         pref = getSharedPreferences("pref", MODE_PRIVATE);
 
         listView = (ListView) findViewById(R.id.productListView);
+        bookCodeInput = (EditText) findViewById(R.id.bookCodeInput);
+        returnButton = (Button) findViewById(R.id.returnButton);
 
         adapter = new BookAdapter();
 
@@ -117,6 +124,12 @@ public class ReturnActivity extends AppCompatActivity {
 
 
         }
+        returnButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Return();
+            }
+        });
 
 
 //        mBook.addValueEventListener(new ValueEventListener() {
@@ -202,5 +215,9 @@ public class ReturnActivity extends AppCompatActivity {
 
             }
         });
+    }
+
+    public void Return(){
+        mUser.child(id).child("LendBookCode").child(bookCodeInput.getText().toString()).removeValue();
     }
 }

@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".SignUpActivity">
+    tools:context=".LogInActivity">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -12,40 +12,25 @@
         android:orientation="vertical">
 
         <EditText
-            android:id="@+id/editText_ID_SignUp"
+            android:id="@+id/editText_ID"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
             android:inputType="textPersonName"
-            android:hint="ID"/>
+            android:hint="ID" />
 
         <EditText
-            android:id="@+id/editText_Password_SignUp"
+            android:id="@+id/editText_Password"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
             android:inputType="textPassword"
             android:hint="Password"/>
 
-        <LinearLayout
+        <Button
+            android:id="@+id/button_"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="horizontal">
-
-            <Button
-                android:id="@+id/button_SignUp"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="SIGN UP" />
-
-            <Button
-                android:id="@+id/button_Cancel"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="CANCEL" />
-        </LinearLayout>
-
+            android:layout_height="wrap_content"
+            android:text="LOGIN" />
     </LinearLayout>
 </android.support.constraint.ConstraintLayout>

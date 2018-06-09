@@ -18,6 +18,7 @@ public class DetailActivity extends AppCompatActivity {
     SharedPreferences pref;
     String id;
 
+
     DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference();
     DatabaseReference mUser = mDatabase.child("User");
 
@@ -29,6 +30,7 @@ public class DetailActivity extends AppCompatActivity {
         pref = getSharedPreferences("pref", MODE_PRIVATE);
 
         Intent intent = getIntent();
+        final String bookCode = intent.getStringExtra("BookCode");
         String bookName = intent.getStringExtra("BookName");
         String author = intent.getStringExtra("Author");
         String bookPublisher = intent.getStringExtra("BookPublisher");
@@ -54,8 +56,10 @@ public class DetailActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 if(mUser.child(id).child("LendDate") != null){
+                    mUser.child(id).child("LendBookCode").child(bookCode).removeValue();
                     mUser.child(id).child("LendDate").removeValue();
                     returnButton.setVisibility(View.INVISIBLE);
+                    finish();
                 }
 
             }

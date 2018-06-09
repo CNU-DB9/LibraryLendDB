@@ -148,11 +148,13 @@ public class ReturnActivity extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Book item = (Book) adapter.getItem(position);
+                String bookCode = item.getBookCode();
                 String bookName = item.getBookName();
                 String author = item.getAuthor();
                 String bookPublisher = item.getBookPublisher();
 
                 Intent intent = new Intent(ReturnActivity.this, DetailActivity.class);
+                intent.putExtra("BookCode",bookCode);
                 intent.putExtra("BookName",bookName);
                 intent.putExtra("Author",author);
                 intent.putExtra("BookPublisher",bookPublisher);

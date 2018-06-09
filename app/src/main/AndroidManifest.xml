@@ -10,19 +10,13 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".MainActivity">
-
-        </activity>
-        <activity android:name=".LendActivity">
-
-        </activity>
-        <activity android:name=".ReturnActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
-
+            </intent-filter></activity>
+        <activity android:name=".LendActivity" />
+        <activity android:name=".ReturnActivity"></activity>
         <activity android:name=".DetailActivity"></activity>
         <activity android:name=".SignUpActivity" />
         <activity android:name=".LogInActivity" />

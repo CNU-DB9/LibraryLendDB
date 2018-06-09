@@ -50,13 +50,13 @@ public class SelectActivity extends AppCompatActivity {
                 break;
 
             case R.id.button_Lend:
-                //intent_Lend = new Intent(this, LendActivity.class);
-                //startActivity(intent_Lend);
+                intent_Lend = new Intent(this, LendActivity.class);
+                startActivity(intent_Lend);
                 break;
 
             case R.id.button_Return:
-                //intent_Return = new Intent(this, ReturnActivity.class);
-                //startActivity(intent_Return);
+                intent_Return = new Intent(this, ReturnActivity.class);
+                startActivity(intent_Return);
                 break;
         }
     }

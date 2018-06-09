@@ -8,10 +8,10 @@ import java.util.Map;
 
 public class Book implements Serializable {
 
-    String bookCode;//책 고유 코드
-    String bookName; //책이름
-    String author; //작가
-    String bookPublisher; //출판사
+    private String bookCode;//책 고유 코드
+    private String bookName; //책이름
+    private String author; //작가
+    private String bookPublisher; //출판사
 
     public Map<String, Boolean> updateProduct = new HashMap<>();
 

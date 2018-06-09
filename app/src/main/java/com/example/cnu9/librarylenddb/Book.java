@@ -16,7 +16,6 @@ public class Book implements Serializable {
     String bookName; //책이름
     String author; //작가
     String bookPublisher; //출판사
-    String bookProductDate; //출판일
 
     public Map<String, Boolean> updateProduct = new HashMap<>();
 
@@ -28,19 +27,17 @@ public class Book implements Serializable {
         this.bookCode = bookCode;
     }
 
-    public Book(String bookName, String author, String bookPublisher, String bookProductDate){
+    public Book(String bookName, String author, String bookPublisher){
         this.bookName = bookName;
         this.author = author;
         this.bookPublisher = bookPublisher;
-        this.bookProductDate = bookProductDate;
     }
 
-    public Book(String bookCode, String bookName, String author, String bookPublisher, String bookProductDate){
+    public Book(String bookCode, String bookName, String author, String bookPublisher){
         this.bookCode = bookCode;
         this.bookName = bookName;
         this.author = author;
         this.bookPublisher = bookPublisher;
-        this.bookProductDate = bookProductDate;
     }
 
 //    public Product(String name, String bacode, int price, int total_quantity, int x){
@@ -76,14 +73,6 @@ public class Book implements Serializable {
         this.bookPublisher = bookPublisher;
     }
 
-    public String getBookProductDate() {
-        return bookProductDate;
-    }
-
-    public void setBookProductDate(String bookProductDate) {
-        this.bookProductDate = bookProductDate;
-    }
-
 
     @Exclude
     public Map<String, Object> toMap() {
@@ -92,7 +81,6 @@ public class Book implements Serializable {
         result.put("BookName", bookName);
         result.put("Author", author);
         result.put("BookPublisher", bookPublisher);
-        result.put("BookProductDate", bookProductDate);
         return result;
     }
 

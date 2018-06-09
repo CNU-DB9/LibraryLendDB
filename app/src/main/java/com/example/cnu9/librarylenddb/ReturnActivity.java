@@ -25,7 +25,7 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 
 public class ReturnActivity extends AppCompatActivity {
-
+    private final static int RETURNACTIVITY = 2;
     DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference();
     DatabaseReference mBook = mDatabase.child("Book");
 
@@ -171,6 +171,8 @@ public class ReturnActivity extends AppCompatActivity {
                 intent.putExtra("BookName",bookName);
                 intent.putExtra("Author",author);
                 intent.putExtra("BookPublisher",bookPublisher);
+                intent.putExtra("PreviousActivity", RETURNACTIVITY);
+
                 startActivity(intent);
             }
         });

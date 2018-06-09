@@ -23,6 +23,7 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 
 public class LendActivity extends AppCompatActivity {
+    private final static int LENDACTIVITY = 1;
 
     // 데이터베이스
     private DatabaseReference database = FirebaseDatabase.getInstance().getReference();
@@ -70,7 +71,7 @@ public class LendActivity extends AppCompatActivity {
                 intent.putExtra("BookName",item.getBookName());
                 intent.putExtra("Author",item.getAuthor());
                 intent.putExtra("BookPublisher",item.getBookPublisher());
-
+                intent.putExtra("PreviousActivity", LENDACTIVITY);
                 startActivity(intent);
             }
         });

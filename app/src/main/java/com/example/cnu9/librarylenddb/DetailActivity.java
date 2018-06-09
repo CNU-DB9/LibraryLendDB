@@ -22,11 +22,9 @@ public class DetailActivity extends AppCompatActivity {
     SharedPreferences pref;
     String id;
 
-
     DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference();
     DatabaseReference mBook = mDatabase.child("Book");
     DatabaseReference mUser = mDatabase.child("User");
-    DatabaseReference mBook = mDatabase.child("Book");
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,6 +38,7 @@ public class DetailActivity extends AppCompatActivity {
         String bookName = intent.getStringExtra("BookName");
         String author = intent.getStringExtra("Author");
         String bookPublisher = intent.getStringExtra("BookPublisher");
+        int previousActivity = intent.getIntExtra("PreviousActivity", 1);
 
         text_bookName = (TextView) findViewById(R.id.bookName);
         text_author = (TextView) findViewById(R.id.author);
@@ -49,13 +48,27 @@ public class DetailActivity extends AppCompatActivity {
         lendButton = (Button) findViewById(R.id.lendButton);
         returnButton = (Button) findViewById(R.id.returnButton);
 
-
         text_bookName.setText(bookName);
         text_author.setText(author);
         text_bookPublisher.setText(bookPublisher);
 
-        //여기에 데이터베이스 접근하여 빌린 일자 받아와야함
+        // 대출일 때,
+        if(previousActivity == 1){
+            returnButton.setVisibility(View.INVISIBLE);
 
+            if(mBook.child(bookCode).child("stock").getKey() == "false"){
+                lendButton.setVisibility(View.INVISIBLE);
+            }
+        }
+        else if(previousActivity == 2){
+            lendButton.setVisibility(View.INVISIBLE);
+
+            if(mBook.child(bookCode).child("stock").getKey() == "false"){
+                returnButton.setVisibility(View.INVISIBLE);
+            }
+        }
+
+        //여기에 데이터베이스 접근하여 빌린 일자 받아와야함
         id = pref.getString("ID","");
 
         returnButton.setOnClickListener(new View.OnClickListener() {
@@ -65,6 +78,7 @@ public class DetailActivity extends AppCompatActivity {
                     mUser.child(id).child("LendBookCode").child(bookCode).removeValue();
                     mBook.child(bookCode).child("stock").setValue(true);
                     returnButton.setVisibility(View.INVISIBLE);
+                    toastMessage("반납하셨습니다.");
                     finish();
                 }
 
@@ -81,7 +95,6 @@ public class DetailActivity extends AppCompatActivity {
                 mUser.child(id).child("LendBookCode").child(bookCode).setValue(strDayTime);
                 mBook.child(bookCode).child("stock").setValue(false);
                 lendButton.setVisibility(View.INVISIBLE);
-                returnButton.setVisibility(View.VISIBLE);
                 toastMessage("대출하였습니다.");
                 finish();
             }

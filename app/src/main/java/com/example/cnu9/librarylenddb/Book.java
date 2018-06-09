@@ -36,11 +36,11 @@ public class Book implements Serializable {
         this.bookPublisher = bookPublisher;
     }
 
-//    public Product(String name, String bacode, int price, int total_quantity, int x){
-//        this.name = name;
-//        this.bacode = bacode;
-//        this.price = price;
-//        this.total_quantity = total_quantity;
+//    public Book(String bookCode, String bookName, String author, String bookPublisher, int x){
+//        this.bookCode = bookCode;
+//        this.bookName = bookName;
+//        this.author = author;
+//        this.bookPublisher = bookPublisher;
 //        this.x = x;
 //    }
 

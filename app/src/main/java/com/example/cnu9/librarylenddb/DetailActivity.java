@@ -49,7 +49,7 @@ public class DetailActivity extends AppCompatActivity {
         text_author.setText(author);
         text_bookPublisher.setText(bookPublisher);
 
-        //여기에 데이터베이스 접근하여 빌린 일자 받아와야함
+        text_lendDate.setText(mUser.child(id).child("LendBookCode").child(bookCode).getKey());
 
         id = pref.getString("ID","");
 

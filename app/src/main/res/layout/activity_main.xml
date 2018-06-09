@@ -6,24 +6,36 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
-    <LinearLayout
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:layout_height="match_parent">
+
+        <ImageView
+            android:id="@+id/imageView"
+            android:layout_width="@android:dimen/thumbnail_width"
+            android:layout_height="@android:dimen/thumbnail_height"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="110dp"
+            app:srcCompat="@drawable/library" />
 
         <Button
             android:id="@+id/button_LogIn"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="LOGIN"
-            android:onClick="onClick"/>
+            android:layout_above="@+id/button_SignUp"
+            android:onClick="onClick"
+            android:text="로그인"
+            android:textSize="20sp" />
 
         <Button
             android:id="@+id/button_SignUp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="SIGN UP"
-            android:onClick="onClick"/>
+            android:layout_alignParentBottom="true"
+            android:onClick="onClick"
+            android:text="회원가입"
+            android:textSize="20sp" />
+    </RelativeLayout>
 
-    </LinearLayout>
 </android.support.constraint.ConstraintLayout>

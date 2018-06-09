@@ -17,31 +17,35 @@
             android:layout_height="wrap_content"
             android:ems="10"
             android:hint="ID"
-            android:inputType="textPersonName" />
+            android:inputType="textPersonName"
+            android:textSize="20sp" />
 
         <EditText
             android:id="@+id/editText_Name_SignUp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
+            android:hint="Name"
             android:inputType="textPersonName"
-            android:hint="Name"/>
+            android:textSize="20sp" />
 
         <EditText
             android:id="@+id/editText_Birthday_SignUp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
+            android:hint="Birthdate"
             android:inputType="date"
-            android:hint="Birthdate"/>
+            android:textSize="20sp" />
 
         <EditText
             android:id="@+id/editText_PW_SignUp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
+            android:hint="Password"
             android:inputType="textPassword"
-            android:hint="Password"/>
+            android:textSize="20sp" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -53,16 +57,18 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="SIGN UP"
-                android:onClick="onClick"/>
+                android:onClick="onClick"
+                android:text="확인"
+                android:textSize="20sp" />
 
             <Button
                 android:id="@+id/button_Cancel"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="CANCEL"
-                android:onClick="onClick"/>
+                android:onClick="onClick"
+                android:text="취소"
+                android:textSize="20sp" />
         </LinearLayout>
 
     </LinearLayout>

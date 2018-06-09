@@ -15,8 +15,9 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
-            android:text="ADD"
-            android:onClick="onClick"/>
+            android:onClick="onClick"
+            android:text="도서 추가"
+            android:textSize="20sp" />
     </RelativeLayout>
 
 </android.support.constraint.ConstraintLayout>

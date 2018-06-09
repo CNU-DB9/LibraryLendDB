@@ -16,22 +16,25 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
+            android:hint="ID"
             android:inputType="textPersonName"
-            android:hint="ID" />
+            android:textSize="20sp" />
 
         <EditText
             android:id="@+id/editText_PW"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
+            android:hint="Password"
             android:inputType="textPassword"
-            android:hint="Password"/>
+            android:textSize="20sp" />
 
         <Button
             android:id="@+id/button_LogIn"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="LOGIN"
-            android:onClick="onClick"/>
+            android:onClick="onClick"
+            android:text="로그인"
+            android:textSize="20sp" />
     </LinearLayout>
 </android.support.constraint.ConstraintLayout>

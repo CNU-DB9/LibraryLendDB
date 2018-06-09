@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.EditText;
@@ -53,6 +54,13 @@ public class LendActivity extends AppCompatActivity {
                 else {
                     searchBookList(bookName);
                 }
+            }
+        });
+
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Book item = (Book) adapter.getItem(position);
             }
         });
 
@@ -127,6 +135,7 @@ public class LendActivity extends AppCompatActivity {
         });
     }
 
+    // 책을 찾아 화면에 표시
     private void searchBookList(final String bookName){
         Log.d("SearchBookList", bookName);
         book.addValueEventListener(new ValueEventListener() {
@@ -158,6 +167,7 @@ public class LendActivity extends AppCompatActivity {
         });
     }
 
+    // TOAST 메시지 띄우기
     private void toastMessage(String msg){
         Toast toast = Toast.makeText(getApplicationContext(), msg, Toast.LENGTH_SHORT);
         toast.show();

@@ -1,5 +1,7 @@
 package com.example.cnu9.librarylenddb;
 
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -21,17 +23,18 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 
 public class LendActivity extends AppCompatActivity {
+    private final static int LENDACTIVITY = 1;
 
     // 데이터베이스
-    DatabaseReference database = FirebaseDatabase.getInstance().getReference();
-    DatabaseReference book = database.child("Book");
+    private DatabaseReference database = FirebaseDatabase.getInstance().getReference();
+    private DatabaseReference book = database.child("Book");
 
-    ArrayList<Book> items = new ArrayList<Book>();  // Book 리스트
+    private ArrayList<Book> items = new ArrayList<Book>();  // Book 리스트
 
-    ListView listView;
-    BookAdapter adapter;
-    Button btnFind;
-    EditText inputFind;
+    private ListView listView;
+    private BookAdapter adapter;
+    private Button btnFind;
+    private EditText inputFind;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,6 +64,15 @@ public class LendActivity extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Book item = (Book) adapter.getItem(position);
+
+                Intent intent = new Intent(LendActivity.this, DetailActivity.class);
+
+                intent.putExtra("BookCode", item.getBookCode());
+                intent.putExtra("BookName",item.getBookName());
+                intent.putExtra("Author",item.getAuthor());
+                intent.putExtra("BookPublisher",item.getBookPublisher());
+                intent.putExtra("PreviousActivity", LENDACTIVITY);
+                startActivity(intent);
             }
         });
 

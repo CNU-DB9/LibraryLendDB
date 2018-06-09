@@ -13,6 +13,7 @@
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 <<<<<<< HEAD
+<<<<<<< HEAD
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
@@ -23,8 +24,12 @@
         <activity android:name=".ReturnActivity">
 =======
 >>>>>>> origin/login
-
+=======
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
+>>>>>>> origin/lend
+
         <activity android:name=".LendActivity" />
         <activity android:name=".ReturnActivity" />
         <activity android:name=".DetailActivity" />

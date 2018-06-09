@@ -15,6 +15,9 @@
             android:layout_width="250dp"
             android:layout_height="60dp"
             android:hint="책 이름을 적어주세요."
+            android:layout_weight="1"
+            android:ems="10"
+            android:inputType="textPersonName"
             android:maxLines="1"
             android:minLines="1" />
 

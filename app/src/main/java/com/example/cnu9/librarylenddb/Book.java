@@ -6,10 +6,6 @@ import java.io.Serializable;
 import java.util.HashMap;
 import java.util.Map;
 
-/**
- * Created by SUDALKIM on 2017-11-23.
- */
-
 public class Book implements Serializable {
 
     String bookCode;//책 고유 코드

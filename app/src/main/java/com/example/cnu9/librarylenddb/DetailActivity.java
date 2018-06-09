@@ -64,7 +64,7 @@ public class DetailActivity extends AppCompatActivity {
         lendButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+//                mUser.child(id).child("LendBookCode").setValue()
             }
         });
 

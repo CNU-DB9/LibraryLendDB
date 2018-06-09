@@ -19,7 +19,7 @@ import java.util.ArrayList;
 public class ReturnActivity extends AppCompatActivity {
 
     DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference();
-    DatabaseReference mProduct = mDatabase.child("Product");
+    DatabaseReference mProduct = mDatabase.child("Book");
 
     ListView listView;
     BookAdapter adapter;
@@ -73,6 +73,52 @@ public class ReturnActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_return);
+
+
+        listView = (ListView) findViewById(R.id.productListView);
+
+        adapter = new BookAdapter();
+
+
+        mProduct.addValueEventListener(new ValueEventListener() {
+
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                adapter.allRemove(); //리스트 내부를 모두 지웠다가 아래 for문으로 다시 생성
+                for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
+                    String bookCode = snapshot.child("BookCode").getValue(String.class);
+                    String bookName = snapshot.child("BookName").getValue(String.class);
+                    String author = snapshot.child("Author").getValue(String.class);
+                    String bookPublisher = snapshot.child("BookPublisher").getValue(String.class);
+                    adapter.addItem(new Book(bookCode, bookName, author, bookPublisher));
+                    listView.setAdapter(adapter); //리스트 뷰에 어댑터 객체 설정
+                }
+                listView.setAdapter(adapter);
+
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+        //저장한 값을 이용하여 어댑터에 각 아이템 추가
+
+//
+////
+////        //전체 상품보기에서 해당하는 상품 클릭시 메인으로 돌아와 선택된 상품 바코드 출력
+////        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+////            @Override
+////            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+////                Product item = (Product) adapter.getItem(position);
+//////                item.getBacode();//이게 바코드 받아오는 코드
+////                String a = item.getBacode();
+////                Intent intent = new Intent();
+////                intent.putExtra("position",a);
+////                setResult(RESULT_OK,intent);
+////                finish();
+////            }
+////        });
 
     }
 }

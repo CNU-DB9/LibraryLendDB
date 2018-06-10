@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -36,6 +37,8 @@ public class SelectActivity extends AppCompatActivity {
         super.onStart();
 
         pref = getSharedPreferences("pref", MODE_PRIVATE);
+
+        Log.e("아이디 : ", pref.getString("ID","없음"));
     }
 
     public void onClick(View view) {
@@ -59,5 +62,13 @@ public class SelectActivity extends AppCompatActivity {
                 startActivity(intent_Return);
                 break;
         }
+    }
+
+    @Override
+    public void onBackPressed() {
+        SharedPreferences.Editor editor = pref.edit();
+        editor.clear();
+        editor.commit();
+        super.onBackPressed();
     }
 }

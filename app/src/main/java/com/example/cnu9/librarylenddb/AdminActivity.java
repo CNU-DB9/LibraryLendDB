@@ -30,4 +30,12 @@ public class AdminActivity extends AppCompatActivity {
     public void onClick(View view) {
 
     }
+
+    @Override
+    public void onBackPressed() {
+        SharedPreferences.Editor editor = pref.edit();
+        editor.clear();
+        editor.commit();
+        super.onBackPressed();
+    }
 }

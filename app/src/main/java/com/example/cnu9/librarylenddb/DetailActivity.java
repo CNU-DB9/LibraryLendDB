@@ -65,10 +65,20 @@ public class DetailActivity extends AppCompatActivity {
         // 대출일 때,
         if(previousActivity == 1){
             returnButton.setVisibility(View.INVISIBLE);
-            Log.d("Test", mBook.child(bookCode).child("stock").getKey());
-            if(mBook.child(bookCode).child("stock").getKey().equals("false")){
-                lendButton.setVisibility(View.INVISIBLE);
-            }
+            mBook.addValueEventListener(new ValueEventListener() {
+                @Override
+                public void onDataChange(DataSnapshot dataSnapshot) {
+                    Boolean stock = dataSnapshot.child(bookCode).child("stock").getValue(Boolean.class);
+                    if(!stock){
+                        lendButton.setVisibility(View.INVISIBLE);
+                    }
+                }
+
+                @Override
+                public void onCancelled(DatabaseError databaseError) {
+
+                }
+            });
         }
         else if(previousActivity == 2){
             lendButton.setVisibility(View.INVISIBLE);
@@ -84,9 +94,9 @@ public class DetailActivity extends AppCompatActivity {
 
                 }
             });
-            if(mBook.child(bookCode).child("stock").getKey() == "false"){
-                returnButton.setVisibility(View.INVISIBLE);
-            }
+//            if(mBook.child(bookCode).child("stock").getKey() == "false"){
+//                returnButton.setVisibility(View.INVISIBLE);
+//            }
         }
 
         returnButton.setOnClickListener(new View.OnClickListener() {
@@ -106,9 +116,8 @@ public class DetailActivity extends AppCompatActivity {
         lendButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                long time = System.currentTimeMillis();
-                SimpleDateFormat dayTime = new SimpleDateFormat("yyyy.mm.dd");
-                String strDayTime = dayTime.format(new Date(time));
+                SimpleDateFormat dayTime = new SimpleDateFormat("yyyy.MM.dd");
+                String strDayTime = dayTime.format(new Date());
 
                 mUser.child(id).child("LendBookCode").child(bookCode).setValue(strDayTime);
                 mBook.child(bookCode).child("stock").setValue(false);

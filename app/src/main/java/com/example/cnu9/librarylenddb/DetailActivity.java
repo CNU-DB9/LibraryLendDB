@@ -48,6 +48,9 @@ public class DetailActivity extends AppCompatActivity {
         lendButton = (Button) findViewById(R.id.lendButton);
         returnButton = (Button) findViewById(R.id.returnButton);
 
+        //여기에 데이터베이스 접근하여 빌린 일자 받아와야함
+        id = pref.getString("ID","");
+
         text_bookName.setText(bookName);
         text_author.setText(author);
         text_bookPublisher.setText(bookPublisher);
@@ -68,9 +71,6 @@ public class DetailActivity extends AppCompatActivity {
                 returnButton.setVisibility(View.INVISIBLE);
             }
         }
-
-        //여기에 데이터베이스 접근하여 빌린 일자 받아와야함
-        id = pref.getString("ID","");
 
         returnButton.setOnClickListener(new View.OnClickListener() {
             @Override

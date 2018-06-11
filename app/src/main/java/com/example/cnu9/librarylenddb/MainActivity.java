@@ -28,6 +28,7 @@ public class MainActivity extends AppCompatActivity {
 
         button_LogIn = (Button) findViewById(R.id.button_LogIn);
         button_SignUp = (Button) findViewById(R.id.button_SignUp);
+
     }
 
     public void onClick(View view) {

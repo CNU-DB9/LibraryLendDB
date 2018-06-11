@@ -1,10 +1,12 @@
 package com.example.cnu9.librarylenddb;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -19,7 +21,7 @@ import com.google.firebase.database.ValueEventListener;
 
 import org.w3c.dom.Comment;
 
-public class LogInActivity extends AppCompatActivity {
+public class LogInActivity extends Activity {
 
     private EditText editText_ID;
     private EditText editText_PW;
@@ -37,6 +39,7 @@ public class LogInActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setTitle("로그인");
         setContentView(R.layout.activity_log_in);
 
         editText_ID = (EditText) findViewById(R.id.editText_ID);
@@ -51,6 +54,9 @@ public class LogInActivity extends AppCompatActivity {
 
         editText_ID.getText().clear();
         editText_PW.getText().clear();
+
+        Log.e("아이디 : ", pref.getString("ID","없음"));
+
     }
 
     public void onClick(View view) {
@@ -76,6 +82,7 @@ public class LogInActivity extends AppCompatActivity {
                                 editor.putString("ID", ID);
                                 editor.commit();
                                 startActivity(intent_Admin);
+                                finish();
                             }
                         } else {
                             if(PW.equals(snapshot.child("PW").getValue(String.class))) {
@@ -83,6 +90,7 @@ public class LogInActivity extends AppCompatActivity {
                                 editor.putString("ID", ID);
                                 editor.commit();
                                 startActivity(intent_Select);
+                                finish();
                             }
                         }
                     }
@@ -95,5 +103,14 @@ public class LogInActivity extends AppCompatActivity {
 
             }
         });
+    }
+
+    @Override
+    public boolean onTouchEvent(MotionEvent event) {
+        //^^바깥레이어 클릭시 안닫히게
+        if(event.getAction()== MotionEvent.ACTION_OUTSIDE){
+            return false;
+        }
+        return true;
     }
 }

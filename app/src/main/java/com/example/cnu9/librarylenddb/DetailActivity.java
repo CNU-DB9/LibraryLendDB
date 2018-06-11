@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -59,15 +60,15 @@ public class DetailActivity extends AppCompatActivity {
         // 대출일 때,
         if(previousActivity == 1){
             returnButton.setVisibility(View.INVISIBLE);
-
-            if(mBook.child(bookCode).child("stock").getKey() == "false"){
+            Log.d("Test", mBook.child(bookCode).child("stock").getKey());
+            if(mBook.child(bookCode).child("stock").getKey().equals("false")){
                 lendButton.setVisibility(View.INVISIBLE);
             }
         }
         else if(previousActivity == 2){
             lendButton.setVisibility(View.INVISIBLE);
 
-            if(mBook.child(bookCode).child("stock").getKey() == "false"){
+            if(mBook.child(bookCode).child("stock").getKey().equals("false")){
                 returnButton.setVisibility(View.INVISIBLE);
             }
         }

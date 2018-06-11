@@ -9,8 +9,11 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -51,7 +54,9 @@ public class DetailActivity extends AppCompatActivity {
         text_bookName.setText(bookName);
         text_author.setText(author);
         text_bookPublisher.setText(bookPublisher);
-        text_lendDate.setText(mUser.child(id).child("LendBookCode").child(bookCode).getKey());
+
+        //여기에 데이터베이스 접근하여 빌린 일자 받아와야함
+        id = pref.getString("ID","");
 
         // 대출일 때,
         if(previousActivity == 1){
@@ -63,14 +68,23 @@ public class DetailActivity extends AppCompatActivity {
         }
         else if(previousActivity == 2){
             lendButton.setVisibility(View.INVISIBLE);
+            mUser.child(id).addValueEventListener(new ValueEventListener() {
+                @Override
+                public void onDataChange(DataSnapshot dataSnapshot) {
+                    String lendDate = dataSnapshot.child("LendBookCode").child(bookCode).getValue(String.class);
+                    text_lendDate.setText(lendDate);
+                }
 
+                @Override
+                public void onCancelled(DatabaseError databaseError) {
+
+                }
+            });
             if(mBook.child(bookCode).child("stock").getKey() == "false"){
                 returnButton.setVisibility(View.INVISIBLE);
             }
         }
 
-        //여기에 데이터베이스 접근하여 빌린 일자 받아와야함
-        id = pref.getString("ID","");
 
         returnButton.setOnClickListener(new View.OnClickListener() {
             @Override

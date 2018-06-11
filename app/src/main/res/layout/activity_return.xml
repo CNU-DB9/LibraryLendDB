@@ -94,7 +94,7 @@
     </LinearLayout>
 
     <ListView
-        android:id="@+id/productListView"
+        android:id="@+id/bookListView"
         android:layout_width="match_parent"
         android:layout_height="354dp"
         tools:layout_editor_absoluteX="8dp"

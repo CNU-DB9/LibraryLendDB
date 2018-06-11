@@ -41,7 +41,7 @@ public class LendActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_lend);
 
-        listView = findViewById(R.id.productListView);
+        listView = findViewById(R.id.bookListView);
         adapter = new BookAdapter();
         btnFind = findViewById(R.id.btn_find);
         inputFind = findViewById(R.id.input_find);

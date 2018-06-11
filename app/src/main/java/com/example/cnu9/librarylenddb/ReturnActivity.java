@@ -94,7 +94,7 @@ public class ReturnActivity extends AppCompatActivity {
 
         pref = getSharedPreferences("pref", MODE_PRIVATE);
 
-        listView = (ListView) findViewById(R.id.productListView);
+        listView = (ListView) findViewById(R.id.bookListView);
         bookCodeInput = (EditText) findViewById(R.id.bookCodeInput);
         returnButton = (Button) findViewById(R.id.returnButton);
 

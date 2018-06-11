@@ -1,9 +1,12 @@
 package com.example.cnu9.librarylenddb;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.MotionEvent;
 import android.view.View;
+import android.view.Window;
 import android.widget.Button;
 import android.widget.EditText;
 
@@ -13,7 +16,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
-public class SignUpActivity extends AppCompatActivity {
+public class SignUpActivity extends Activity {
 
     private EditText editText_ID_SignUp;
     private EditText editText_Name_SignUp;
@@ -28,6 +31,7 @@ public class SignUpActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setTitle("회원가입");
         setContentView(R.layout.activity_sign_up);
 
         editText_ID_SignUp = (EditText) findViewById(R.id.editText_ID_SignUp);
@@ -60,11 +64,27 @@ public class SignUpActivity extends AppCompatActivity {
                 conditionRef_User_Birthday.setValue(editText_Birthday_SignUp.getText().toString());
                 conditionRef_User_PW.setValue(editText_PW_SignUp.getText().toString());
                 finish();
+
                 break;
 
             case R.id.button_Cancel:
                 finish();
                 break;
         }
+    }
+
+    @Override
+    public boolean onTouchEvent(MotionEvent event) {
+        //^^바깥레이어 클릭시 안닫히게
+        if(event.getAction()== MotionEvent.ACTION_OUTSIDE){
+            return false;
+        }
+        return true;
+    }
+
+    @Override
+    public void onBackPressed() {
+        //^^안드로이드 백버튼 막기
+        return;
     }
 }

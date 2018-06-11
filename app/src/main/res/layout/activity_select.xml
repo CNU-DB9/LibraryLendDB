@@ -27,7 +27,7 @@
             android:layout_centerHorizontal="true"
             android:layout_marginTop="140dp"
             android:onClick="onClick"
-            android:text="대출"
+            android:text="대   출"
             android:textSize="30sp" />
 
         <Button
@@ -38,7 +38,7 @@
             android:layout_centerHorizontal="true"
             android:layout_marginBottom="140dp"
             android:onClick="onClick"
-            android:text="반납"
+            android:text="반   납"
             android:textSize="30sp" />
     </RelativeLayout>
 </android.support.constraint.ConstraintLayout>

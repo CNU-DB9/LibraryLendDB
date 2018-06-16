@@ -2,6 +2,7 @@ package com.example.cnu9.librarylenddb;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.MotionEvent;
@@ -9,6 +10,7 @@ import android.view.View;
 import android.view.Window;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -25,8 +27,14 @@ public class SignUpActivity extends Activity {
     private Button button_SignUp;
     private Button button_Cancel;
     private String ID;
+    private boolean a;
 
     FirebaseDatabase database = FirebaseDatabase.getInstance();
+    DatabaseReference conditionRef_User_ID;
+    DatabaseReference conditionRef_User_Name;
+    DatabaseReference conditionRef_User_Birthday;
+    DatabaseReference conditionRef_User_PW;
+    DatabaseReference conditionRef_User;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,17 +61,40 @@ public class SignUpActivity extends Activity {
         {
             case R.id.button_SignUp:
 
+                a = true;
+
                 ID = editText_ID_SignUp.getText().toString();
 
-                DatabaseReference conditionRef_User_ID = database.getReference("User").child(ID);
-                DatabaseReference conditionRef_User_Name = database.getReference("User").child(ID).child("Name");
-                DatabaseReference conditionRef_User_Birthday = database.getReference("User").child(ID).child("Birthday");
-                DatabaseReference conditionRef_User_PW = database.getReference("User").child(ID).child("PW");
+                conditionRef_User = database.getReference("User");
 
-                conditionRef_User_Name.setValue(editText_Name_SignUp.getText().toString());
-                conditionRef_User_Birthday.setValue(editText_Birthday_SignUp.getText().toString());
-                conditionRef_User_PW.setValue(editText_PW_SignUp.getText().toString());
-                finish();
+                //아이디 중복 확인
+                conditionRef_User.addValueEventListener(new ValueEventListener() {
+
+                    @Override
+                    public void onDataChange(DataSnapshot dataSnapshot) {
+
+                        for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
+
+                            //Log.e("key : ",snapshot.getKey()+"    value : "+snapshot.getValue());
+
+                            if(ID.equals(snapshot.getKey())) {
+                                a = false;
+                                //Toast.makeText(getApplicationContext(),"이미 존재하는 아이디입니다.", Toast.LENGTH_LONG).show();
+                                //finish();
+                            } else {
+                                continue;
+                            }
+                        }
+
+                        idCheck();
+
+                    }
+
+                    @Override
+                    public void onCancelled(DatabaseError databaseError) {
+
+                    }
+                });
 
                 break;
 
@@ -86,5 +117,22 @@ public class SignUpActivity extends Activity {
     public void onBackPressed() {
         //^^안드로이드 백버튼 막기
         return;
+    }
+
+    public void idCheck() {
+        if (a == false) {
+            Toast.makeText(getApplicationContext(),"이미 존재하는 아이디입니다.", Toast.LENGTH_LONG).show();
+            finish();
+        } else {
+            conditionRef_User_ID = database.getReference("User").child(ID);
+            conditionRef_User_Name = database.getReference("User").child(ID).child("Name");
+            conditionRef_User_Birthday = database.getReference("User").child(ID).child("Birthday");
+            conditionRef_User_PW = database.getReference("User").child(ID).child("PW");
+
+            conditionRef_User_Name.setValue(editText_Name_SignUp.getText().toString());
+            conditionRef_User_Birthday.setValue(editText_Birthday_SignUp.getText().toString());
+            conditionRef_User_PW.setValue(editText_PW_SignUp.getText().toString());
+            finish();
+        }
     }
 }

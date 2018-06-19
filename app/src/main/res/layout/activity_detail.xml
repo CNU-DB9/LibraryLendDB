@@ -10,7 +10,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:gravity="right">
+        android:gravity="left">
 
         <LinearLayout
             android:layout_width="wrap_content"
@@ -20,7 +20,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="도서명:"
-                android:textSize="16pt"
+                android:textSize="13pt"
                 tools:layout_editor_absoluteX="43dp"
                 tools:layout_editor_absoluteY="31dp" />
             <TextView
@@ -28,7 +28,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Empty"
-                android:textSize="16pt"
+                android:textSize="13pt"
                 tools:layout_editor_absoluteX="43dp"
                 tools:layout_editor_absoluteY="31dp" />
         </LinearLayout>
@@ -41,12 +41,12 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="작가:"
-                android:textSize="16pt"
+                android:textSize="13pt"
                 tools:layout_editor_absoluteX="43dp"
                 tools:layout_editor_absoluteY="31dp" />
             <TextView
                 android:id="@+id/author"
-                android:textSize="16pt"
+                android:textSize="13pt"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Empty" />
@@ -60,12 +60,12 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="출판사:"
-                android:textSize="18pt"
+                android:textSize="13pt"
                 tools:layout_editor_absoluteX="43dp"
                 tools:layout_editor_absoluteY="31dp" />
             <TextView
                 android:id="@+id/bookPublisher"
-                android:textSize="18pt"
+                android:textSize="13pt"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Empty" />
@@ -80,12 +80,12 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="대출일:"
-                android:textSize="16pt"
+                android:textSize="13pt"
                 tools:layout_editor_absoluteX="43dp"
                 tools:layout_editor_absoluteY="31dp" />
             <TextView
                 android:id="@+id/lendDate"
-                android:textSize="16pt"
+                android:textSize="13pt"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="YY.MM.DD" />
@@ -100,12 +100,12 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="반납일:"
-                android:textSize="16pt"
+                android:textSize="13pt"
                 tools:layout_editor_absoluteX="43dp"
                 tools:layout_editor_absoluteY="31dp" />
             <TextView
                 android:id="@+id/returnDate"
-                android:textSize="16pt"
+                android:textSize="13pt"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="YY.MM.DD" />
@@ -120,7 +120,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="대출중"
-                android:textSize="16pt"
+                android:textSize="13pt"
                 tools:layout_editor_absoluteX="43dp"
                 tools:layout_editor_absoluteY="31dp" />
         </LinearLayout>

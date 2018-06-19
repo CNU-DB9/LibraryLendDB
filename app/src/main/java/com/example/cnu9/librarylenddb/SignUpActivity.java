@@ -61,41 +61,17 @@ public class SignUpActivity extends Activity {
         {
             case R.id.button_SignUp:
 
-                a = true;
-
                 ID = editText_ID_SignUp.getText().toString();
 
-                conditionRef_User = database.getReference("User");
+                conditionRef_User_ID = database.getReference("User").child(ID);
+                conditionRef_User_Name = database.getReference("User").child(ID).child("Name");
+                conditionRef_User_Birthday = database.getReference("User").child(ID).child("Birthday");
+                conditionRef_User_PW = database.getReference("User").child(ID).child("PW");
 
-                //아이디 중복 확인
-                conditionRef_User.addValueEventListener(new ValueEventListener() {
-
-                    @Override
-                    public void onDataChange(DataSnapshot dataSnapshot) {
-
-                        for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
-
-                            //Log.e("key : ",snapshot.getKey()+"    value : "+snapshot.getValue());
-
-                            if(ID.equals(snapshot.getKey())) {
-                                a = false;
-                                //Toast.makeText(getApplicationContext(),"이미 존재하는 아이디입니다.", Toast.LENGTH_LONG).show();
-                                //finish();
-                            } else {
-                                continue;
-                            }
-                        }
-
-                        idCheck();
-
-                    }
-
-                    @Override
-                    public void onCancelled(DatabaseError databaseError) {
-
-                    }
-                });
-
+                conditionRef_User_Name.setValue(editText_Name_SignUp.getText().toString());
+                conditionRef_User_Birthday.setValue(editText_Birthday_SignUp.getText().toString());
+                conditionRef_User_PW.setValue(editText_PW_SignUp.getText().toString());
+                finish();
                 break;
 
             case R.id.button_Cancel:

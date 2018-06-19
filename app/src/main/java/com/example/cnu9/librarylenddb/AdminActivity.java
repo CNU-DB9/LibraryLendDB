@@ -1,6 +1,7 @@
 package com.example.cnu9.librarylenddb;
 
 import android.app.Dialog;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -30,7 +31,7 @@ public class AdminActivity extends AppCompatActivity {
     private SharedPreferences pref;
 
     ListView listView;
-    Button addBookbtn,searchBookbtn;
+    Button addBookbtn,searchBookbtn, logout;
 
     DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference();
     DatabaseReference mBook = mDatabase.child("Book");
@@ -90,6 +91,7 @@ public class AdminActivity extends AppCompatActivity {
 
         addBookbtn = (Button) findViewById(R.id.addBook);
         searchBookbtn = (Button) findViewById(R.id.searchBook);
+        logout = findViewById(R.id.logout);
         listView = (ListView) findViewById(R.id.productListView);
         adapter = new BookAdapter();
 
@@ -99,6 +101,14 @@ public class AdminActivity extends AppCompatActivity {
         데이터 불러오기
         ID = pref.getString("ID","");
         */
+        logout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(AdminActivity.this, MainActivity.class);
+                i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP|Intent.FLAG_ACTIVITY_SINGLE_TOP);
+                startActivity(i);
+            }
+        });
 
         mBook.addValueEventListener(new ValueEventListener() {
 
@@ -227,6 +237,7 @@ public class AdminActivity extends AppCompatActivity {
                     String a = item.getBookName();
                     if (a.equals(searchName.getText().toString())) {
                         updateBook(item.getBookCode(), item.getBookName(), item.getAuthor(), item.getBookPublisher());
+                        dialog.dismiss();
                     }
                 }
             }
